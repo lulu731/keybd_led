@@ -1,73 +1,71 @@
-//#include <getopt.h>
-#include <vector>
+#include <colors.hpp>
 
+#include <vector>
 #include <iostream> // printf
+#include <string>
+
 #include <string.h>
 #include <unistd.h>
 
 #include <hidapi/hidapi_libusb.h>
 
-//extern int optind;
+void print_error( const int aResult );
 
-void print_error( const int res );
-
-void send_buffer( hid_device* handle, const unsigned char* buf);
-
+void send_buffer( hid_device* aHandle, const unsigned char* aBuf);
 
 int main( int argc, char* argv[] )
 {
-	const char* options = "c:a:"; // kbd (c)olor, (a)nimation
-    char* color = nullptr;
-	char* animation = nullptr;
+	const char* Options = "c:a:"; // kbd (c)olor, (a)nimation
+    char* Color = nullptr;
+	char* Animation = nullptr;
 	int c;
-	/*while ( c = getopt( argc, argv, options ))
+	while ( ( c = getopt( argc, argv, Options ) ) != -1)
 	{
 		switch ( c )
 		{
 		case 'c':
-			color = optarg;
+			Color = optarg;
 			break;
 		case 'a':
-			animation = optarg;
+			Animation = optarg;
 			break;
 		case '?':
 			if ( optopt == 'c' || optopt == 'a')
 				fprintf( stderr, "Option -%c requires an argument.\n", optopt );
 			else
 				fprintf( stderr, "Unknown option character `\\x%x`.\n", optopt);
-
 			return EXIT_FAILURE;
 		default:
 			abort();
 		}
-	}*/
+	}
 
-	int res;
+	const int BUF_SIZE = 64;
+	int Result;
 
-	hid_device *handle;
-
+	hid_device *Handle;
 	// Open ms-1565 device using VID, PID.
-	handle = hid_open( 0x1462, 0x1601, NULL );
-	if ( !handle ) {
-		const wchar_t *error = hid_error( NULL );
+	Handle = hid_open( 0x1462, 0x1601, NULL );
+	if ( !Handle ) {
+		const wchar_t *Error = hid_error( NULL );
 		printf( "Unable to open device\n" );
-		printf( "%ls", error );
+		printf( "%ls", Error );
  		return EXIT_FAILURE;
 	}
 
-	std::vector<unsigned char> buf( 64 );
-	buf.assign( { 2, 1, 15 });
-	send_buffer( handle, buf.data() ); // All kbd zones to be configured
+	std::vector<unsigned char> Buf;
+	Buf.assign( { 2, 1, 15 });
+	Buf.resize( BUF_SIZE, 0);
+	send_buffer( Handle, Buf.data() ); // All kbd zones to be configured
 
-//	memset( buf, 0, 64 );
-	for ( int i = 1; i < argc; i++ )
-	{
-		const char* arg = argv[i];
-		buf[i-1] = atoi( arg );
-	}
-	// 2 2 1 50 0 0 0 15 1 0 0 255 255 255
+	Buf.clear();
+	Buf.assign( {2, 2, 1, 50, 0, 0, 0, 15, 1, 0, 0 } );
 
-	send_buffer( handle, buf.data() );
+	if ( Color )
+		Buf.insert( Buf.end(), Colors.at(Color).cbegin(), Colors.at(Color).cend() );
+
+	Buf.resize( BUF_SIZE );
+	send_buffer( Handle, Buf.data() );
 
     hid_exit();
 
@@ -75,18 +73,18 @@ int main( int argc, char* argv[] )
 }
 
 
-void print_error( const int res )
+void print_error( const int aResult )
 {
-	if ( res == -1 )
+	if ( aResult == -1 )
 	{
-		const wchar_t* error = hid_error( NULL );
-		printf( "%ls", error );
+		const wchar_t* Error = hid_error( NULL );
+		printf( "%ls", Error );
 	}
 }
 
 
-void send_buffer( hid_device* handle, const unsigned char* buf)
+void send_buffer( hid_device* aHandle, const unsigned char* aBuf)
 {
-	int res = hid_send_feature_report( handle, buf, 64 );
-	print_error( res );
+	int Result = hid_send_feature_report( aHandle, aBuf, 64 );
+	print_error( Result );
 }
