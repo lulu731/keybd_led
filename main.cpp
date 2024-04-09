@@ -1,4 +1,5 @@
 #include <colors.hpp>
+#include <animations.hpp>
 
 #include <vector>
 #include <iostream> // printf
@@ -59,12 +60,22 @@ int main( int argc, char* argv[] )
 	send_buffer( Handle, Buf.data() ); // All kbd zones to be configured
 
 	Buf.clear();
-	Buf.assign( {2, 2, 1, 50, 0, 0, 0, 15, 1, 0, 0 } );
+
+	if( Animation )
+	{
+		Buf.assign( {2, 2, Animations.at( Animation ), 50, 0, 0, 0, 15, 1, 0, 0 } );
+	}
+	else
+		Buf.assign( {2, 2, 1, 50, 0, 0, 0, 15, 1, 0, 0 } );
 
 	if ( Color )
+	{
 		Buf.insert( Buf.end(), Colors.at(Color).cbegin(), Colors.at(Color).cend() );
+		Buf.insert( Buf.end(), 100 );
+		Buf.insert( Buf.end(), Colors.at(Color).cbegin(), Colors.at(Color).cend() );
+	}
 
-	Buf.resize( BUF_SIZE );
+	Buf.resize( BUF_SIZE, 0 );
 	send_buffer( Handle, Buf.data() );
 
     hid_exit();
