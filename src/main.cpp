@@ -63,7 +63,7 @@ int main( int argc, char* argv[] )
 
 	if( Animation )
 	{
-		Buf.assign( {2, 2, Animations.at( Animation ), 50, 0, 0, 0, 15, 1, 0, 0 } );
+		//Buf.assign( {2, 2, Animations.at( Animation ), 50, 0, 0, 0, 15, 1, 0, 0 } );
 	}
 	else
 		Buf.assign( {2, 2, 1, 50, 0, 0, 0, 15, 1, 0, 0 } );
