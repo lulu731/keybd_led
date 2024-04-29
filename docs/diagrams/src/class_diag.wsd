@@ -1,0 +1,42 @@
+@startuml classes
+    class KBD_LED
+    {
+        +Execute()
+    }
+
+    enum ColorEnum
+    {
+        WHITE
+        RED
+        GREEN
+        BLUE
+    }
+
+    class COLORS
+    {
+        {field} -string m_List
+        +COLORS( string aList )
+        +GetList()
+    }
+
+    COLORS --> ColorEnum
+
+
+    class ANIMATION
+    {
+        {field} -string m_Animation
+        +ANIMATION( string aAnimation )
+        +GetAnimation()
+    }
+
+    enum AnimationEnum
+    {
+        OFF = 0
+        STEADY = 1
+        BREATH = 2
+    }
+
+    KBD_LED --> "1" COLORS
+    KBD_LED --> "1" ANIMATION
+    ANIMATION --> AnimationEnum
+@enduml
