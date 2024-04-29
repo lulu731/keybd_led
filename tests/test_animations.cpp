@@ -6,18 +6,18 @@
 
 BOOST_AUTO_TEST_CASE( GetOFFAnimation )
 {
-    ANIMATION aAnim( "off" );
-    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION_ENUM::OFF );
+    ANIMATIONS aAnim( "off" );
+    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::OFF );
 }
 
 BOOST_AUTO_TEST_CASE( GetSTEADYAnimation )
 {
-    ANIMATION aAnim( "steady" );
-    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION_ENUM::STEADY );
+    ANIMATIONS aAnim( "steady" );
+    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::STEADY );
 }
 
 BOOST_AUTO_TEST_CASE( GetBREATHAnimation )
 {
-    ANIMATION aAnim( "breath" );
-    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION_ENUM::BREATH );
+    ANIMATIONS aAnim( "breath" );
+    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::BREATH );
 }

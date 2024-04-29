@@ -1,16 +1,24 @@
 #include "include/animations.h"
 
 #include <string>
+#include <map>
 
-ANIMATION::ANIMATION(const std::string aAnimation) : m_Animation( aAnimation )
+const std::map<std::string, ANIMATION> Anim_Map =
+    {
+        { "off", ANIMATION::OFF},
+        { "steady", ANIMATION::STEADY},
+        { "breath", ANIMATION::BREATH}
+    };
+
+ANIMATIONS::ANIMATIONS(const std::string aAnimation) : m_Animation( aAnimation )
 {
 }
 
-ANIMATION::~ANIMATION()
+ANIMATIONS::~ANIMATIONS()
 {
 }
 
-ANIMATION_ENUM ANIMATION::GetAnimation() const
+ANIMATION ANIMATIONS::GetAnimation() const
 {
-    return ANIMATION_ENUM::OFF;
+    return Anim_Map.at( m_Animation );
 }
