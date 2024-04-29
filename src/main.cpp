@@ -1,5 +1,5 @@
-#include <include/colors.hpp>
-#include <include/animations.hpp>
+#include "include/colors.h"
+#include "include/animations.h"
 
 #include <vector>
 #include <iostream> // printf

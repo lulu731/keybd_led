@@ -1,4 +1,4 @@
-#include "include/animations.hpp"
+#include "include/animations.h"
 
 #include <string>
 
