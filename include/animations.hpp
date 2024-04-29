@@ -4,11 +4,21 @@
 #include <map>
 #include <string>
 
-const unsigned char OFF = 0;
-const unsigned char STEADY = 1;
-const unsigned char BREATH = 2;
+enum class ANIMATION_ENUM { OFF = 0, STEADY = 1, BREATH = 2 };
 
-const std::map<const std::string, const unsigned char> Animations =
-    { { "off", OFF }, { "steady", STEADY }, { "breath", BREATH } };
+const std::map<const std::string, const ANIMATION_ENUM> Animations =
+    { { "off", ANIMATION_ENUM::OFF },
+      { "steady", ANIMATION_ENUM::STEADY },
+      { "breath", ANIMATION_ENUM::BREATH } };
+
+class ANIMATION
+{
+private:
+    std::string m_Animation;
+public:
+    ANIMATION(const std::string aAnimation);
+    ~ANIMATION();
+    ANIMATION_ENUM GetAnimation() const;
+};
 
 #endif // ANIMATIONS_HPP
