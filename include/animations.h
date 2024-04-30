@@ -14,10 +14,6 @@ enum class ANIMATION
     BREATH = 2
 };
 
-const std::map<const std::string, const ANIMATION> Animations = { { "off", ANIMATION::OFF },
-                                                                  { "steady", ANIMATION::STEADY },
-                                                                  { "breath", ANIMATION::BREATH } };
-
 /**
  * @brief Used to manage animations
  */
