@@ -4,6 +4,9 @@
 #include <map>
 #include <stdexcept>
 
+/**
+ * @brief Maps string param to ANIMATION enum
+ */
 const std::map<std::string, ANIMATION> Anim_Map{ { "off", ANIMATION::OFF },
                                                  { "steady", ANIMATION::STEADY },
                                                  { "breath", ANIMATION::BREATH } };

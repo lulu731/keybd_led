@@ -4,6 +4,9 @@
 #include <map>
 #include <string>
 
+/**
+ * Animation enumeration
+ */
 enum class ANIMATION
 {
     OFF = 0,
@@ -15,6 +18,9 @@ const std::map<const std::string, const ANIMATION> Animations = { { "off", ANIMA
                                                                   { "steady", ANIMATION::STEADY },
                                                                   { "breath", ANIMATION::BREATH } };
 
+/**
+ * @brief Used to manage animations
+ */
 class ANIMATIONS
 {
 private:
@@ -23,6 +29,11 @@ private:
 public:
     ANIMATIONS( const std::string aAnimation );
     ~ANIMATIONS();
+
+    /**
+     * @brief Returns current animation
+     * @return ANIMATION enum value
+     */
     ANIMATION GetAnimation() const;
 };
 
