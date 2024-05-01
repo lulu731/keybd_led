@@ -4,7 +4,7 @@
         +Execute()
     }
 
-    enum ColorEnum
+    enum Color
     {
         WHITE
         RED
@@ -19,24 +19,24 @@
         +GetList()
     }
 
-    COLORS --> ColorEnum
+    COLORS --> "1..*" Color
 
 
-    class ANIMATION
+    class ANIMATIONS
     {
         {field} -string m_Animation
         +ANIMATION( string aAnimation )
         +GetAnimation()
     }
 
-    enum AnimationEnum
+    enum Animation
     {
         OFF = 0
         STEADY = 1
         BREATH = 2
     }
 
-    KBD_LED --> "1" COLORS
-    KBD_LED --> "1" ANIMATION
-    ANIMATION --> AnimationEnum
+    KBD_LED "1" --> "1" COLORS
+    KBD_LED "1" --> "1" ANIMATIONS
+    ANIMATIONS --> "1" Animation
 @enduml
