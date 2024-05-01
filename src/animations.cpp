@@ -12,19 +12,16 @@ const std::map<std::string, ANIMATION> Anim_Map{ { "off", ANIMATION::OFF },
                                                  { "steady", ANIMATION::STEADY },
                                                  { "breath", ANIMATION::BREATH } };
 
+
 ANIMATIONS::ANIMATIONS( const std::string aAnimation ) : m_Animation( aAnimation )
 {
-    if ( m_Animation != "off" && m_Animation != "steady" && m_Animation != "breath" )
+    if ( Anim_Map.find( m_Animation ) == Anim_Map.end() )
     {
-        const std::string           What{ m_Animation + " argument is not [off, breath, steady]." };
-        const std::invalid_argument Except( What );
+        const std::invalid_argument Except( m_Animation + " argument is not in [off, breath, steady]." );
         throw Except;
     }
 }
 
-ANIMATIONS::~ANIMATIONS()
-{
-}
 
 ANIMATION ANIMATIONS::GetAnimation() const
 {
