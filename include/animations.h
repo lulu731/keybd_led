@@ -23,12 +23,16 @@ private:
     std::string m_Animation;
 
 public:
+    /**
+     * @brief Constructor
+     * @param aAnimation should be in [off, breath, steady]
+     * @throws std::invalid_argument if constructor argument is not in [off, breath, steady]
+     */
     ANIMATIONS( const std::string aAnimation );
     ~ANIMATIONS();
 
     /**
      * @brief Returns current animation
-     * @throws std::invalid_argument if constructor argument is not in [off, breath, steady]
      * @return ANIMATION enum value
      * @retval ANIMATION::OFF
      * @retval ANIMATION::STEADY

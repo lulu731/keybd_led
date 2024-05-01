@@ -24,8 +24,7 @@ BOOST_AUTO_TEST_CASE( GetBREATHAnimation )
     BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::BREATH );
 }
 
-BOOST_AUTO_TEST_CASE( Throw_Exception_On_Wrong_String )
+BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_String )
 {
-    ANIMATIONS aAnim( "Breath" );
-    BOOST_CHECK_THROW ( aAnim.GetAnimation(), std::invalid_argument );
+    BOOST_CHECK_THROW ( ANIMATIONS( "Breath" ), std::invalid_argument );
 }
