@@ -28,6 +28,7 @@ public:
 
     /**
      * @brief Returns current animation
+     * @throws std::invalid_argument if constructor argument is not in [off, breath, steady]
      * @return ANIMATION enum value
      */
     ANIMATION GetAnimation() const;
