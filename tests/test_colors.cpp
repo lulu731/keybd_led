@@ -11,30 +11,35 @@ void Check_List_Equal( const COLORS& aColors, const COLORS_LIST& aList )
     auto aIterator = aList.begin();
 
     BOOST_REQUIRE_EQUAL( aColors.GetList().size(), aList.size() );
-    for ( auto i = aColors.GetList().begin(); i != aColors.GetList().end(); i++)
+    for( auto i = aColors.GetList().begin(); i != aColors.GetList().end(); i++ )
     {
         BOOST_CHECK_EQUAL( *i, *aIterator );
         aIterator++;
     }
 }
 
-BOOST_AUTO_TEST_CASE( Get_White )
+BOOST_AUTO_TEST_CASE( GetWhiteColor )
 {
-    COLORS_LIST aColorsList { "white" };
-    COLORS aColors( "white" );
+    COLORS_LIST aColorsList{ "white" };
+    COLORS      aColors( "white" );
 
     Check_List_Equal( aColors, aColorsList );
 }
 
-BOOST_AUTO_TEST_CASE( Get_Color_List )
+BOOST_AUTO_TEST_CASE( GetColorList )
 {
-    COLORS_LIST aColorsList { "white", "red", "green", "white"};
-    COLORS aColors( "white,red,green,white" );
+    COLORS_LIST aColorsList{ "white", "red", "green", "white" };
+    COLORS      aColors( "white,red,green,white" );
 
     Check_List_Equal( aColors, aColorsList );
 }
 
-BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_Arg )
+BOOST_AUTO_TEST_CASE( EmptyColorShouldThrowException )
 {
-    BOOST_CHECK_THROW ( COLORS( "White" ), std::invalid_argument );
+    BOOST_CHECK_THROW( COLORS( "" ), std::invalid_argument );
+}
+
+BOOST_AUTO_TEST_CASE( CtorShouldThrowExceptionOnWrongArg )
+{
+    BOOST_CHECK_THROW( COLORS( "White" ), std::invalid_argument );
 }
