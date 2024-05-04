@@ -28,7 +28,7 @@ public:
      * @param aAnimation should be in [off, breath, steady]
      * @throws std::invalid_argument if constructor argument is not in [off, breath, steady]
      */
-    ANIMATIONS( const std::string aAnimation );
+    ANIMATIONS( const std::string aAnimation = "steady" );
 
     /**
      * @brief Returns current animation
