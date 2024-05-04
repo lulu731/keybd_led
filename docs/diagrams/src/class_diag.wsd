@@ -12,31 +12,72 @@
         BLUE
     }
 
-    class COLORS
+
+    /'class COLORS
     {
-        {field} -string m_List
-        +COLORS( string aList )
+        -m_List : string
+        +COLORS( aList : string )
         +GetList()
     }
-
-    COLORS --> "1..*" Color
-
+    note left of COLORS::aList
+        def="white"
+    end note
+    COLORS "1" ..> "1..*" Color'/
 
     class ANIMATIONS
     {
-        {field} -string m_Animation
-        +ANIMATION( string aAnimation )
-        +GetAnimation()
+        -mAnimation : string
+        +ANIMATION( aAnimation: string = "steady" )
+        '+GetAnimation()
     }
 
-    enum Animation
+        enum Animation
     {
-        OFF = 0
-        STEADY = 1
-        BREATH = 2
+        OFF
+        STEADY
+        BREATH
     }
 
-    KBD_LED "1" --> "1" COLORS
-    KBD_LED "1" --> "1" ANIMATIONS
-    ANIMATIONS --> "1" Animation
+    ANIMATIONS [GetAnimation()] -> "1" Animation
+
+    enum Speed
+    {
+        SLOW
+        MEDIUM
+        FAST
+    }
+
+    class ANIM_SPEED
+    {
+        -mSpeed : string
+        '+GetSpeed()
+    }
+
+    ANIM_SPEED [GetSpeed()] -> "1" Speed
+
+    class KEYFRAME
+    {
+        -mTime : string
+        -mColor : string
+        +GetTime()
+        '+GetColor()
+    }
+    note left :{0<m_Time<100}
+    note as N1
+        {time ordered}
+        {first kf=0}
+        {last kf=100}
+        {first color=last color}
+    end note
+
+    KEYFRAME [GetColor()] -> "1" Color
+
+    KBD_LED .. N1
+    N1 .. KEYFRAME
+
+    'KBD_LED "1" *--> "1" COLORS
+    KBD_LED "1" *--> "1" ANIMATIONS
+    KBD_LED "1" *--> "1" ANIM_SPEED
+    KBD_LED "1" *--> "0..10" KEYFRAME
+
 @enduml
