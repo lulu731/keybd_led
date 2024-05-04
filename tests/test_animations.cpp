@@ -12,6 +12,12 @@ BOOST_AUTO_TEST_CASE( GetOFFAnimation )
     BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::OFF );
 }
 
+BOOST_AUTO_TEST_CASE( DefaultCtorReturnSteady )
+{
+    ANIMATIONS aAnim;
+    BOOST_CHECK( aAnim.GetAnimation() == ANIMATION::STEADY );
+}
+
 BOOST_AUTO_TEST_CASE( GetSTEADYAnimation )
 {
     ANIMATIONS aAnim( "steady" );
@@ -26,5 +32,5 @@ BOOST_AUTO_TEST_CASE( GetBREATHAnimation )
 
 BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_String )
 {
-    BOOST_CHECK_THROW ( ANIMATIONS( "Breath" ), std::invalid_argument );
+    BOOST_CHECK_THROW( ANIMATIONS( "Breath" ), std::invalid_argument );
 }
