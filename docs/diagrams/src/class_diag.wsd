@@ -12,18 +12,15 @@
         BLUE
     }
 
-
-    /'class COLORS
+'----- COLORS -----
+    class COLORS
     {
-        -List : string
-        +COLORS( aList : string )
-        +GetList()
+        -colors[] : string = "white"
     }
-    note left of COLORS::aList
-        def="white"
-    end note
-    COLORS "1" ..> "1..*" Color'/
 
+    COLORS [colors] --> "1..*" Color
+
+'----- ANIMATIONS -----
     class ANIMATIONS
     {
         -animation : string = "steady"
@@ -38,6 +35,7 @@
 
     ANIMATIONS [animation] --> "1" Animation
 
+'----- SPEED -----
     enum Speed
     {
         SLOW
@@ -52,11 +50,13 @@
 
     ANIM_SPEED [speed] --> "1" Speed
 
+'----- KEYFRAME -----
     class KEYFRAME
     {
         -time : string
         -color : string = "white"
     }
+
     note left :{0<time<100}
     note as N1
         {time ordered}
@@ -70,7 +70,7 @@
     KBD_LED .. N1
     N1 .. KEYFRAME
 
-    'KBD_LED "1" *--> "1" COLORS
+    KBD_LED "1" *--> "1" COLORS
     KBD_LED "1" *--> "1" ANIMATIONS
     KBD_LED "1" *--> "1" ANIM_SPEED
     KBD_LED "1" *--> "0..10" KEYFRAME
