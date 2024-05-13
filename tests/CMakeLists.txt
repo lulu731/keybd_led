@@ -22,3 +22,16 @@ target_include_directories( test_colors
     PRIVATE ../ )
 
 add_test( NAME colors COMMAND $<TARGET_FILE:test_colors> )
+
+
+#
+# test_speed
+#
+add_executable ( test_speed
+    test_speed.cpp
+    ../src/anim_speed.cpp )
+
+target_include_directories( test_speed
+    PRIVATE ../ )
+
+add_test( NAME anim_speed COMMAND $<TARGET_FILE:test_speed> )
