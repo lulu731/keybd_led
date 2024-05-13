@@ -37,7 +37,7 @@ public:
      * @retval ANIMATION::STEADY
      * @retval ANIMATION::BREATH
      */
-    ANIMATION GetAnimation() const;
+    ANIMATION Animation() const;
 };
 
 #endif // ANIMATIONS_H

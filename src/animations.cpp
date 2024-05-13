@@ -23,7 +23,7 @@ ANIMATIONS::ANIMATIONS( const std::string aAnimation ) : m_Animation( aAnimation
 }
 
 
-ANIMATION ANIMATIONS::GetAnimation() const
+ANIMATION ANIMATIONS::Animation() const
 {
     assert( m_Animation == "off" || m_Animation == "steady" || m_Animation == "breath" );
 
