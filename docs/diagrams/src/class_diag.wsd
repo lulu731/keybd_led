@@ -1,7 +1,7 @@
 @startuml classes
     class KBD_LED
     {
-        +Execute()
+        +execute()
     }
 
     enum Color
@@ -15,7 +15,7 @@
 
     /'class COLORS
     {
-        -m_List : string
+        -List : string
         +COLORS( aList : string )
         +GetList()
     }
@@ -26,9 +26,7 @@
 
     class ANIMATIONS
     {
-        -mAnimation : string
-        +ANIMATION( aAnimation: string = "steady" )
-        '+GetAnimation()
+        -animation : string = "steady"
     }
 
         enum Animation
@@ -38,7 +36,7 @@
         BREATH
     }
 
-    ANIMATIONS [GetAnimation()] -> "1" Animation
+    ANIMATIONS [animation] --> "1" Animation
 
     enum Speed
     {
@@ -49,20 +47,17 @@
 
     class ANIM_SPEED
     {
-        -mSpeed : string
-        '+GetSpeed()
+        -speed : string = "slow"
     }
 
-    ANIM_SPEED [GetSpeed()] -> "1" Speed
+    ANIM_SPEED [speed] --> "1" Speed
 
     class KEYFRAME
     {
-        -mTime : string
-        -mColor : string
-        +GetTime()
-        '+GetColor()
+        -time : string
+        -color : string = "white"
     }
-    note left :{0<m_Time<100}
+    note left :{0<time<100}
     note as N1
         {time ordered}
         {first kf=0}
@@ -70,7 +65,7 @@
         {first color=last color}
     end note
 
-    KEYFRAME [GetColor()] -> "1" Color
+    KEYFRAME [color] --> "1" Color
 
     KBD_LED .. N1
     N1 .. KEYFRAME
