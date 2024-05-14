@@ -1,78 +1,96 @@
 @startuml classes
-    class KBD_LED
-    {
-        +execute()
-    }
 
-    enum Color
-    {
-        WHITE
-        RED
-        GREEN
-        BLUE
-    }
+class KBD_LED
+{
+    +execute()
+}
+
+enum Color
+{
+    WHITE
+    RED
+    GREEN
+    BLUE
+}
 
 '----- COLORS -----
-    class COLORS
-    {
-        -colors[] : string = "white"
-    }
+class COLORS
+{
+    -colors[] : string = "white"
+}
 
-    COLORS [colors] --> "1..*" Color
+COLORS [colors] --> "1..*" Color
+
+'----- TIMES -----
+class TIMES
+{
+    -times : string
+    +times[] : int
+}
+
+note top of TIMES
+    {0<times[i]<100}
+    {time[0]=0}
+    {last time[i]=100}
+end note
 
 '----- ANIMATIONS -----
-    class ANIMATIONS
-    {
-        -animation : string = "steady"
-    }
+class ANIMATIONS
+{
+    -animation : string = "steady"
+}
 
-        enum Animation
-    {
-        OFF
-        STEADY
-        BREATH
-    }
+enum Animation
+{
+    OFF
+    STEADY
+    BREATH
+}
 
-    ANIMATIONS [animation] --> "1" Animation
+ANIMATIONS [animation] --> "1" Animation
 
 '----- SPEED -----
-    enum Speed
-    {
-        SLOW
-        MEDIUM
-        FAST
-    }
+enum Speed
+{
+    SLOW
+    MEDIUM
+    FAST
+}
 
-    class ANIM_SPEED
-    {
-        -speed : string = "slow"
-    }
+class ANIM_SPEED
+{
+    -speed : string = "slow"
+}
 
-    ANIM_SPEED [speed] --> "1" Speed
+ANIM_SPEED [speed] --> "1" Speed
 
 '----- KEYFRAME -----
-    class KEYFRAME
-    {
-        -time : string
-        -color : string = "white"
-    }
+class KEYFRAME
+{
+    -time : int
+    '-color : string = "white"
+}
 
-    note left :{0<time<100}
-    note as N1
-        {time ordered}
-        {first kf=0}
-        {last kf=100}
-        {first color=last color}
-    end note
+note left :{time 0 to 100}
 
-    KEYFRAME [color] --> "1" Color
+note as N1
+    {time ordered}
+    {first kf=0}
+    {last kf=100}
+    {first color=last color}
+end note
 
-    KBD_LED .. N1
-    N1 .. KEYFRAME
+KEYFRAME [color] --> "1" Color
+'KEYFRAME "*" ..> "1" TIMES
+'KEYFRAME "*" ..> "1" COLORS
 
-    KBD_LED "1" *--> "1" COLORS
-    KBD_LED "1" *--> "1" ANIMATIONS
-    KBD_LED "1" *--> "1" ANIM_SPEED
-    KBD_LED "1" *--> "0..10" KEYFRAME
+KBD_LED .. N1
+N1 .. KEYFRAME
+
+KBD_LED "1" *--> "1" COLORS
+KBD_LED "1" *--> "1" ANIMATIONS
+KBD_LED "1" *--> "1" ANIM_SPEED
+KBD_LED "1" *--> "2..10\n{ordered}" KEYFRAME
+KBD_LED "1" *--> "1" TIMES
 
 @enduml
