@@ -1,14 +1,14 @@
 #
 # test_animations
 #
-add_executable ( test_animations
-    test_animations.cpp
+add_executable ( test_animation
+    test_animation.cpp
     ../src/animations.cpp )
 
-target_include_directories( test_animations
+target_include_directories( test_animation
     PRIVATE ../ )
 
-add_test( NAME animations COMMAND $<TARGET_FILE:test_animations> )
+add_test( NAME animations COMMAND $<TARGET_FILE:test_animation> )
 
 
 #
@@ -22,16 +22,3 @@ target_include_directories( test_colors
     PRIVATE ../ )
 
 add_test( NAME colors COMMAND $<TARGET_FILE:test_colors> )
-
-
-#
-# test_speed
-#
-add_executable ( test_speed
-    test_speed.cpp
-    ../src/anim_speed.cpp )
-
-target_include_directories( test_speed
-    PRIVATE ../ )
-
-add_test( NAME anim_speed COMMAND $<TARGET_FILE:test_speed> )
