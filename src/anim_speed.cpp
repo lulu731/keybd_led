@@ -5,9 +5,9 @@
 #include <stdexcept>
 
 
-const std::map<std::string, SPEED> Speed_Map{ { "slow", SPEED::SLOW },
-                                              { "medium", SPEED::MEDIUM },
-                                              { "fast", SPEED::FAST } };
+const std::map<std::string, ANIMATION_SPEED> Speed_Map{ { "slow", ANIMATION_SPEED::SLOW },
+                                              { "medium", ANIMATION_SPEED::MEDIUM },
+                                              { "fast", ANIMATION_SPEED::FAST } };
 
 
 ANIM_SPEED::ANIM_SPEED( const std::string aSpeed ) : m_Speed( aSpeed )
@@ -20,7 +20,7 @@ ANIM_SPEED::ANIM_SPEED( const std::string aSpeed ) : m_Speed( aSpeed )
 }
 
 
-SPEED ANIM_SPEED::Speed() const
+ANIMATION_SPEED ANIM_SPEED::Speed() const
 {
     return Speed_Map.at( m_Speed );
 }

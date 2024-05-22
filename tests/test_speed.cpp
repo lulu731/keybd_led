@@ -9,25 +9,25 @@
 BOOST_AUTO_TEST_CASE( DefaultCtorReturnSLOW )
 {
     ANIM_SPEED aSpeed;
-    BOOST_CHECK( aSpeed.Speed() == SPEED::SLOW );
+    BOOST_CHECK( aSpeed.Speed() == ANIMATION_SPEED::SLOW );
 }
 
 BOOST_AUTO_TEST_CASE( GetSLOWAnimation )
 {
     ANIM_SPEED aSpeed( "slow" );
-    BOOST_CHECK( aSpeed.Speed() == SPEED::SLOW );
+    BOOST_CHECK( aSpeed.Speed() == ANIMATION_SPEED::SLOW );
 }
 
 BOOST_AUTO_TEST_CASE( GetMEDIUMSpeed )
 {
     ANIM_SPEED aSpeed( "medium" );
-    BOOST_CHECK( aSpeed.Speed() == SPEED::MEDIUM );
+    BOOST_CHECK( aSpeed.Speed() == ANIMATION_SPEED::MEDIUM );
 }
 
 BOOST_AUTO_TEST_CASE( GetFASTAnimation )
 {
     ANIM_SPEED aSpeed( "fast" );
-    BOOST_CHECK( aSpeed.Speed() == SPEED::FAST );
+    BOOST_CHECK( aSpeed.Speed() == ANIMATION_SPEED::FAST );
 }
 
 BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_String )

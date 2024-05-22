@@ -6,7 +6,7 @@
 /**
  * @brief Speed enumeration
  */
-enum class SPEED
+enum class ANIMATION_SPEED
 {
     SLOW,
     MEDIUM,
@@ -31,12 +31,12 @@ public:
 
     /**
      * @brief Returns current speed
-     * @return SPEED enum value
-     * @retval SPEED::OFF
-     * @retval SPEED::STEADY
-     * @retval SPEED::BREATH
+     * @return ANIMATION_SPEED enum value
+     * @retval ANIMATION_SPEED::OFF
+     * @retval ANIMATION_SPEED::STEADY
+     * @retval ANIMATION_SPEED::BREATH
      */
-    SPEED Speed() const;
+    ANIMATION_SPEED Speed() const;
 };
 
 #endif // ANIM_SPEED_H
