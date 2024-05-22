@@ -7,7 +7,7 @@
 /**
  * Animation enumeration
  */
-enum class ANIMATION
+enum class ANIMATION_TYPE
 {
     OFF = 0,
     STEADY = 1,
@@ -32,12 +32,12 @@ public:
 
     /**
      * @brief Returns current animation
-     * @return ANIMATION enum value
-     * @retval ANIMATION::OFF
-     * @retval ANIMATION::STEADY
-     * @retval ANIMATION::BREATH
+     * @return ANIMATION_TYPE enum value
+     * @retval ANIMATION_TYPE::OFF
+     * @retval ANIMATION_TYPE::STEADY
+     * @retval ANIMATION_TYPE::BREATH
      */
-    ANIMATION Animation() const;
+    ANIMATION_TYPE Animation() const;
 };
 
 #endif // ANIMATIONS_H

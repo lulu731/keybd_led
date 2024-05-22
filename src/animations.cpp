@@ -6,11 +6,11 @@
 #include <cassert>
 
 /**
- * @brief Maps string param to ANIMATION enum
+ * @brief Maps string param to ANIMATION_TYPE enum
  */
-const std::map<std::string, ANIMATION> Anim_Map{ { "off", ANIMATION::OFF },
-                                                 { "steady", ANIMATION::STEADY },
-                                                 { "breath", ANIMATION::BREATH } };
+const std::map<std::string, ANIMATION_TYPE> Anim_Map{ { "off", ANIMATION_TYPE::OFF },
+                                                 { "steady", ANIMATION_TYPE::STEADY },
+                                                 { "breath", ANIMATION_TYPE::BREATH } };
 
 
 ANIMATIONS::ANIMATIONS( const std::string aAnimation ) : m_Animation( aAnimation )
@@ -23,7 +23,7 @@ ANIMATIONS::ANIMATIONS( const std::string aAnimation ) : m_Animation( aAnimation
 }
 
 
-ANIMATION ANIMATIONS::Animation() const
+ANIMATION_TYPE ANIMATIONS::Animation() const
 {
     assert( m_Animation == "off" || m_Animation == "steady" || m_Animation == "breath" );
 
