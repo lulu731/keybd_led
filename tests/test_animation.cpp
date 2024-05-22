@@ -1,6 +1,6 @@
 #define BOOST_TEST_MODULE animations
 
-#include "include/animations.h"
+#include "include/animation.h"
 
 #include <boost/test/included/unit_test.hpp>
 

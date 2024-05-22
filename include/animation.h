@@ -5,7 +5,7 @@
 #include <string>
 
 /**
- * Animation enumeration
+ * Type enumeration
  */
 enum class ANIMATION_TYPE
 {
@@ -15,12 +15,23 @@ enum class ANIMATION_TYPE
 };
 
 /**
+ * @brief Speed enumeration
+ */
+enum class ANIMATION_SPEED
+{
+    SLOW,
+    MEDIUM,
+    FAST
+};
+
+/**
  * @brief Used to manage animations
  */
-class ANIMATIONS
+class ANIMATION
 {
 private:
-    std::string m_Animation;
+    std::string m_Type;
+    std::string m_Speed;
 
 public:
     /**
@@ -28,16 +39,25 @@ public:
      * @param aAnimation should be in [off, breath, steady]
      * @throws std::invalid_argument if constructor argument is not in [off, breath, steady]
      */
-    ANIMATIONS( const std::string aAnimation = "steady" );
+    ANIMATION( const std::string aType = "steady", const std::string aSpeed = "slow" );
 
     /**
-     * @brief Returns current animation
+     * @brief Returns current animation type
      * @return ANIMATION_TYPE enum value
      * @retval ANIMATION_TYPE::OFF
      * @retval ANIMATION_TYPE::STEADY
      * @retval ANIMATION_TYPE::BREATH
      */
-    ANIMATION_TYPE Animation() const;
+    ANIMATION_TYPE Type() const;
+
+    /**
+     * @brief Returns current speed
+     * @return ANIMATION_SPEED enum value
+     * @retval ANIMATION_SPEED::SLOW
+     * @retval ANIMATION_SPEED::MEDIUM
+     * @retval ANIMATION_SPEED::FAST
+     */
+    ANIMATION_SPEED Speed() const;
 };
 
 #endif // ANIMATIONS_H

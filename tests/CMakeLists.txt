@@ -3,7 +3,7 @@
 #
 add_executable ( test_animation
     test_animation.cpp
-    ../src/animations.cpp )
+    ../src/animation.cpp )
 
 target_include_directories( test_animation
     PRIVATE ../ )
