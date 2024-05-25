@@ -23,17 +23,18 @@ ANIMATION::ANIMATION( const std::string aType, const std::string aSpeed ) :
         m_Type( aType ), m_Speed( aSpeed )
 {
     if( Type_Map.find( m_Type ) == Type_Map.end() )
-    {
-        const std::invalid_argument Except( m_Type + " argument is not in [off, breath, steady]." );
-        throw Except;
-    };
+        ThrowInvalidArgument( m_Type + " argument is not in [off, breath, steady]." );
+
     if( Speed_Map.find( m_Speed ) == Speed_Map.end() )
-    {
-        const std::invalid_argument Except( m_Speed + " argument is not in [slow, medium, fast]." );
-        throw Except;
-    }
+        ThrowInvalidArgument( m_Speed + " argument is not in [slow, medium, fast]." );
 }
 
+
+void ANIMATION::ThrowInvalidArgument( const std::string& aMessage )
+{
+    const std::invalid_argument Except( aMessage );
+    throw Except;
+}
 
 ANIMATION_TYPE ANIMATION::Type() const
 {

@@ -9,11 +9,7 @@ COLORS::COLORS( const std::string aColors ) : m_Colors( aColors )
     for( const auto& color : m_ColorsList )
     {
         if( Colors.find( color ) == Colors.end() )
-        {
-            const std::invalid_argument Except( "Color " + color
-                                                + " is not in [white, red, green, blue]." );
-            throw Except;
-        }
+            ThrowInvalidArgument( color + " is not in [white, red, green, blue]." );
     }
 }
 
@@ -28,6 +24,12 @@ void COLORS::SetColorsList()
         pos2 = m_Colors.find_first_of( ',', pos );
     }
     m_ColorsList.push_back( m_Colors.substr( pos, m_Colors.size() - pos ) );
+}
+
+void COLORS::ThrowInvalidArgument( const std::string& aMessage )
+{
+    const std::invalid_argument Except( aMessage );
+    throw Except;
 }
 
 const COLORS_LIST& COLORS::GetList() const
