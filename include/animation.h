@@ -33,8 +33,6 @@ private:
     std::string m_Type;
     std::string m_Speed;
 
-    void ThrowInvalidArgument( const std::string& aMessage );
-
 public:
     /**
      * @brief Constructor

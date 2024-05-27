@@ -34,7 +34,6 @@ private:
     COLORS_LIST       m_ColorsList;
 
     void SetColorsList();
-    void ThrowInvalidArgument( const std::string& aMessage );
 
 public:
     /**

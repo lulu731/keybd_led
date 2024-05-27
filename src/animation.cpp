@@ -1,5 +1,7 @@
 #include "include/animation.h"
 
+#include "include/helper.h"
+
 #include <string>
 #include <map>
 #include <stdexcept>
@@ -22,18 +24,8 @@ const std::map<std::string, ANIMATION_SPEED> Speed_Map{ { "slow", ANIMATION_SPEE
 ANIMATION::ANIMATION( const std::string aType, const std::string aSpeed ) :
         m_Type( aType ), m_Speed( aSpeed )
 {
-    if( Type_Map.find( m_Type ) == Type_Map.end() )
-        ThrowInvalidArgument( m_Type + " argument is not in [off, breath, steady]." );
-
-    if( Speed_Map.find( m_Speed ) == Speed_Map.end() )
-        ThrowInvalidArgument( m_Speed + " argument is not in [slow, medium, fast]." );
-}
-
-
-void ANIMATION::ThrowInvalidArgument( const std::string& aMessage )
-{
-    const std::invalid_argument Except( aMessage );
-    throw Except;
+    CheckKeyInMap( m_Type, Type_Map );
+    CheckKeyInMap( m_Speed, Speed_Map );
 }
 
 ANIMATION_TYPE ANIMATION::Type() const

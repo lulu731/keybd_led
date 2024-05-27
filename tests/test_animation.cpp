@@ -68,7 +68,14 @@ BOOST_AUTO_TEST_CASE( GetFASTAnimation )
     BOOST_CHECK( aAnim.Speed() == ANIMATION_SPEED::FAST );
 }
 
+bool CheckExceptionMessage( const std::invalid_argument& e )
+{
+    const std::string ExceptionMessage = e.what();
+    return ExceptionMessage == "Argument -Slow- is not in [fast, medium, slow]";
+}
+
 BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_Speed_String )
 {
-    BOOST_CHECK_THROW( ANIMATION( "off", "Slow" ), std::invalid_argument );
+    BOOST_CHECK_EXCEPTION( ANIMATION( "off", "Slow" ), std::invalid_argument,
+                           CheckExceptionMessage );
 }
