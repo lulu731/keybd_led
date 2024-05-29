@@ -1,0 +1,71 @@
+@startuml cmd_option diagram
+
+class COMMAND_OPTION
+{
+    #option: string
+    #checkKeyInMap()
+}
+
+COMMAND_OPTION <|-- TIMES
+COMMAND_OPTION <|-- COLORS
+COMMAND_OPTION <|-- ANIM_SPEED
+COMMAND_OPTION <|-- ANIM_TYPE
+
+'----- COLORS -----
+class COLORS
+{
+    #option = "white"
+}
+
+enum COLOR
+{
+    WHITE
+    RED
+    GREEN
+    BLUE
+}
+
+COLORS [colors] --> "1..*" COLOR
+
+'----- TIMES -----
+class TIMES
+{
+    +times[] : int
+}
+
+note top of TIMES
+    {0<times[i]<100}
+    {time[0]=0}
+    {last time[i]=100}
+end note
+
+'----- ANIMATION -----
+enum AnimationType
+{
+    OFF
+    STEADY
+    BREATH
+}
+
+class ANIM_TYPE
+{
+    #option = "steady"
+}
+
+ANIM_TYPE [type] --> "1" AnimationType
+
+enum AnimationSpeed
+{
+    SLOW
+    MEDIUM
+    FAST
+}
+
+class ANIM_SPEED
+{
+    #option = "slow"
+}
+
+ANIM_SPEED [speed] --> "1" AnimationSpeed
+
+@enduml
