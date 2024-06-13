@@ -16,6 +16,7 @@ endif()
 
 find_library( HIDAPI NAMES hidapi-hidraw )
 
+add_subdirectory( lib )
 add_subdirectory( src )
 
 option( ADD_QA "ON to enable testing, coverage and memcheck" )
