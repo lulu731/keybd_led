@@ -3,7 +3,7 @@
 class COMMAND_OPTION
 {
     #option: string
-    #checkKeyInMap()
+    #checkOption()
 }
 
 COMMAND_OPTION <|-- TIMES
