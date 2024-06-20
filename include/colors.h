@@ -1,6 +1,8 @@
 #ifndef COLORS_H
 #define COLORS_H
 
+#include "include/cmd_option_map.h"
+
 #include <vector>
 #include <map>
 #include <string>
@@ -27,11 +29,10 @@ typedef std::vector<std::string> COLORS_LIST;
  * @throw std::invalid_argument if colors are not in [white, red, green, blue]
  * @example COLORS( "red" )
  */
-class COLORS
+class COLORS : public CMD_OPTION_MAP
 {
 private:
-    const std::string m_Colors;
-    COLORS_LIST       m_ColorsList;
+    COLORS_LIST m_ColorsList;
 
     void SetColorsList();
 
