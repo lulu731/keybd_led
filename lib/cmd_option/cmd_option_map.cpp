@@ -1,4 +1,5 @@
 #include "include/cmd_option_map.h"
+#include "include/animation.h"
 
 #include <string>
 #include <map>
@@ -29,3 +30,9 @@ void CMD_OPTION_MAP::CheckKeyInMap( const std::string& aKey, const MAP& aMap )
 template void
 CMD_OPTION_MAP::CheckKeyInMap<std::map<const std::string, const std::vector<unsigned char>>>(
         const std::string&, const std::map<const std::string, const std::vector<unsigned char>>& );
+
+template void CMD_OPTION_MAP::CheckKeyInMap<std::map<std::string, ANIMATION_SPEED>>(
+        const std::string&, const std::map<std::string, ANIMATION_SPEED>& );
+
+template void CMD_OPTION_MAP::CheckKeyInMap<std::map<std::string, ANIMATION_TYPE>>(
+        const std::string&, const std::map<std::string, ANIMATION_TYPE>& );
