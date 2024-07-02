@@ -14,56 +14,44 @@ BOOST_AUTO_TEST_CASE( DefaultCtorReturnSteadyAndSlow )
 }
 
 
-/*********************
- * Test cases for type
- *********************/
-
-BOOST_AUTO_TEST_CASE( GetOFFAnimation )
+BOOST_AUTO_TEST_CASE( GetOFF_MEDIUM_Animation )
 {
-    ANIMATION aAnim( "off" );
+    ANIMATION aAnim( "off,medium" );
     BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::OFF );
+    BOOST_CHECK( aAnim.Speed() == ANIMATION_SPEED::MEDIUM );
 }
 
 
-BOOST_AUTO_TEST_CASE( GetSTEADYAnimation )
+BOOST_AUTO_TEST_CASE( GetSTEADY_Animation )
 {
-    ANIMATION aAnim( "steady" );
+    ANIMATION aAnim( "steady,slow" );
     BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::STEADY );
 }
 
-BOOST_AUTO_TEST_CASE( GetBREATHAnimation )
-{
-    ANIMATION aAnim( "breath" );
-    BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::BREATH );
-}
 
 BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_Type_String )
 {
-    BOOST_CHECK_THROW( ANIMATION( "Breath" ), std::invalid_argument );
+    BOOST_CHECK_THROW( ANIMATION( "Breath,slow" ), std::invalid_argument );
 }
 
 
-/*********************
- * Test cases for speed
- *********************/
-
 BOOST_AUTO_TEST_CASE( GetSLOWAnimation )
 {
-    ANIMATION aAnim( "breath", "slow" );
+    ANIMATION aAnim( "breath,slow" );
     BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::BREATH );
     BOOST_CHECK( aAnim.Speed() == ANIMATION_SPEED::SLOW );
 }
 
 BOOST_AUTO_TEST_CASE( GetMEDIUMSpeed )
 {
-    ANIMATION aAnim( "breath", "medium" );
+    ANIMATION aAnim( "breath,medium" );
     BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::BREATH );
     BOOST_CHECK( aAnim.Speed() == ANIMATION_SPEED::MEDIUM );
 }
 
 BOOST_AUTO_TEST_CASE( GetFASTAnimation )
 {
-    ANIMATION aAnim( "breath", "fast" );
+    ANIMATION aAnim( "breath,fast" );
     BOOST_CHECK( aAnim.Type() == ANIMATION_TYPE::BREATH );
     BOOST_CHECK( aAnim.Speed() == ANIMATION_SPEED::FAST );
 }
@@ -76,6 +64,5 @@ bool CheckExceptionMessage( const std::invalid_argument& e )
 
 BOOST_AUTO_TEST_CASE( Ctor_Throw_Exception_On_Wrong_Speed_String )
 {
-    BOOST_CHECK_EXCEPTION( ANIMATION( "off", "Slow" ), std::invalid_argument,
-                           CheckExceptionMessage );
+    BOOST_CHECK_EXCEPTION( ANIMATION( "off,Slow" ), std::invalid_argument, CheckExceptionMessage );
 }
