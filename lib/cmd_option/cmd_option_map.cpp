@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-CMD_OPTION_MAP::CMD_OPTION_MAP( const std::string aOption ) : COMMAND_OPTION( aOption )
+CMD_OPTION_MAP::CMD_OPTION_MAP( const std::string& aOption ) : COMMAND_OPTION( aOption )
 {
 }
 

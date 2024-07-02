@@ -21,7 +21,7 @@ protected:
      */
 
 public:
-    CMD_OPTION_MAP( const std::string aOption );
+    CMD_OPTION_MAP( const std::string& aOption );
 
     template <class MAP>
     void CheckKeyInMap( const std::string& aKey, const MAP& aMap );

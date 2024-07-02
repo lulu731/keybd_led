@@ -9,7 +9,7 @@ protected:
     std::string m_Option;
 
 public:
-    COMMAND_OPTION( const std::string aOption );
+    COMMAND_OPTION( const std::string& aOption );
 };
 
 #endif // CMD_OPTION_H
