@@ -25,14 +25,14 @@ TIMES::TIMES( const std::string& aOption ) : COMMAND_OPTION( aOption )
             m_Times->push_back( std::stoi( Token ) );
         }
 
-        assert( m_Times->size() == Tokens.size() );
+        if( m_Times->at( 0 ) != 0
+            || ( m_Times->size() > 1 && m_Times->at( m_Times->size() - 1 ) != 100 ) )
+            throw std::invalid_argument( "Bad times argument" );
 
-        for( auto i : *m_Times )
+        for( auto it = m_Times->cbegin(); it != m_Times->cend() - 1; ++it )
         {
-            if( i < 0 || i > 100 )
-            {
-                throw std::invalid_argument( "Bad times argument" );
-            }
+            if( *it >= *( it + 1 ) )
+                throw std::invalid_argument( "Bad times argument, should be ordered" );
         }
     }
     catch( const std::invalid_argument& e )

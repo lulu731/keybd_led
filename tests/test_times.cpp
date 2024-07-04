@@ -39,13 +39,30 @@ BOOST_AUTO_TEST_CASE( CtorThrowExceptionOnWrongTime )
     BOOST_CHECK_EXCEPTION( TIMES( "0,110" ), std::invalid_argument, CheckExceptionMessage );
 }
 
-
-bool TrueExceptionMessage( const std::invalid_argument& e )
+BOOST_AUTO_TEST_CASE( CtorThrowExceptionOnFirstTimeNotZero )
 {
-    return true;
+    BOOST_CHECK_EXCEPTION( TIMES( "10,20,100" ), std::invalid_argument, CheckExceptionMessage );
+}
+
+BOOST_AUTO_TEST_CASE( CtorThrowExceptionOnLastTimeNotOneHundred )
+{
+    BOOST_CHECK_EXCEPTION( TIMES( "0,20,30,40" ), std::invalid_argument, CheckExceptionMessage );
 }
 
 BOOST_AUTO_TEST_CASE( CtorThrowExceptionOnTimeNotInt )
 {
-    BOOST_CHECK_EXCEPTION( TIMES( "0,abc" ), std::invalid_argument, TrueExceptionMessage );
+    BOOST_CHECK_THROW( TIMES( "0,abc" ), std::invalid_argument );
+}
+
+
+bool CheckExceptionMessageUnordered( const std::invalid_argument& e )
+{
+    const std::string ExceptionMessage = e.what();
+    return ExceptionMessage == "Bad times argument, should be ordered";
+}
+
+BOOST_AUTO_TEST_CASE( CtorThrowExceptionOnUnorderedArg )
+{
+    BOOST_CHECK_EXCEPTION( TIMES( "0,10,30,20,100" ), std::invalid_argument,
+                           CheckExceptionMessageUnordered );
 }
