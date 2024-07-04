@@ -30,3 +30,20 @@ target_include_directories( test_colors
     PRIVATE ../ )
 
 add_test( NAME colors COMMAND $<TARGET_FILE:test_colors> )
+
+
+#
+# test_times
+#
+add_executable ( test_times
+    test_times.cpp
+)
+
+target_link_libraries( test_times
+    PRIVATE cmd_option
+)
+
+target_include_directories( test_times
+    PRIVATE ../ )
+
+add_test( NAME times COMMAND $<TARGET_FILE:test_times> )
